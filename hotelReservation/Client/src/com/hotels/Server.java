@@ -21,6 +21,7 @@ public class Server {
     private static final int USEGYM = 109;
     private static final int DISPLAYBOOKINGS = 110;
     private static final int CHECKIN=111;
+    private static final int PAYMENT=113;
     private static final int CHECKOUT=112;
     private static final int LOGIN = 105;
     private static final int SIGNUP = 106;
@@ -275,6 +276,39 @@ public class Server {
                         return;
                     double totalCost = ByteBuffer.wrap(intBytes).getDouble();
                     System.out.println("Your bill is: "+totalCost);
+
+                } else
+                    System.out.println("Error handling your request");
+
+            }
+        });
+    }
+
+
+
+
+    public static void payment(double amount){
+        connectToServer(new ICommand() {
+            @Override
+            public void clientCommand(InputStream inputStream, OutputStream outputStream) throws IOException {
+
+                outputStream.write(PAYMENT);
+                byte[] paymentBytes = new byte[8];
+                ByteBuffer.wrap(paymentBytes).putDouble(amount);
+                outputStream.write(paymentBytes);
+
+                int answer=inputStream.read();
+                if (answer==OKAY){
+
+                    int stringLength = inputStream.read();
+                    if (stringLength == -1)
+                        throw new IOException("end of stream");
+                    byte[] stringBytes = new byte[stringLength];
+                    int actuallyRead = inputStream.read(stringBytes);
+                    if (actuallyRead != stringLength)
+                        return;
+                    String paymentCheckAnswer = new String(stringBytes);
+                    System.out.println(paymentCheckAnswer);
 
                 } else
                     System.out.println("Error handling your request");

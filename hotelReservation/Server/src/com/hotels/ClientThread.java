@@ -17,7 +17,8 @@ public class ClientThread extends Thread {
     private static final int USEGYM = 109;
     private static final int DISPLAYBOOKINGS = 110;
     private static final int CHECKIN = 111;
-    private static final int CHECKOUT= 112;
+    private static final int CHECKOUT = 112;
+    private static final int PAYMENT =113;
 
     private static final int LOGIN = 105;
     private static final int SIGNUP = 106;
@@ -85,6 +86,9 @@ public class ClientThread extends Thread {
                     break;
                 case CHECKOUT:
                     checkOut();
+                    break;
+                case PAYMENT:
+                    payTheBill();
                     break;
 
             }
@@ -205,7 +209,7 @@ public class ClientThread extends Thread {
     private void checkOut() throws IOException{
 
         if(!bookingSystem.getBooking(bookingId).isPaid() && bookingSystem.getBooking(bookingId).isArrived()
-        && bookingSystem.getBooking(bookingId).isCheckedOut()) {
+        && !bookingSystem.getBooking(bookingId).isCheckedOut()) {
             int stringLength = inputStream.read();
             if (stringLength == -1)
                 throw new IOException("end of stream");
@@ -232,6 +236,29 @@ public class ClientThread extends Thread {
 
 
         }
+
+    }
+
+
+    private void payTheBill() throws IOException{
+
+        if (bookingSystem.getBooking(bookingId).isCheckedOut()){
+            outputStream.write(OKAY);
+            byte[] intBytes = new byte[8];
+            int actuallyRead;
+            actuallyRead = inputStream.read(intBytes);
+            if(actuallyRead != 8)
+                return;
+            double amountToPay = ByteBuffer.wrap(intBytes).getDouble();
+            String paymentCheck = bookingSystem.payment(bookingId, amountToPay);
+            byte[] stringBytes = paymentCheck.getBytes();
+            outputStream.write(stringBytes.length);
+            outputStream.write(stringBytes);
+
+        }else
+            outputStream.write(FAILURE);
+        System.out.println("error handling your payment request");
+
 
     }
 

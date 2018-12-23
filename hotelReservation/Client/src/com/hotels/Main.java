@@ -31,13 +31,17 @@ public class Main {
                 System.out.println("7. Add hotel facilities");
                 System.out.println("8. Display your bookings");
                 System.out.println("9. Check out");
-                System.out.println("10. Delete your account");
-                System.out.println("11. Exit");
+                System.out.println("10. Payment");
+                System.out.println("0. Exit");
 
 
-                int Selection = input.nextInt();
+                int selection = input.nextInt();
+                if (selection == 0){
+                    System.out.println("Thank you for visiting us and we look forward to seeing u again soon....BYE");
+                    return;
+                }
 
-                switch (Selection) {
+                switch (selection) {
                     case 1:
                         guestRegister();
 
@@ -65,6 +69,12 @@ public class Main {
                         break;
                     case 9:
                         checkOut();
+                        break;
+                    case 10:
+                        payment();
+                        break;
+                    case 0:
+                        exitProgram();
                         break;
 
                     default:
@@ -261,7 +271,16 @@ public class Main {
 
         Server.checkOut(checkoutDate);
 
+    }
 
+    private static void payment(){
+        input = new Scanner(System.in);
+        System.out.println("please enter the amount you want to pay!");
+        double amount = input.nextDouble();
+        Server.payment(amount);
+    }
+
+    private static void exitProgram(){
 
     }
 

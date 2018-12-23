@@ -287,19 +287,22 @@ public class BookingSystem {
 	}
 
     //this method finishes the check out process
-	public void payment(int bookingId, double money) throws IOException {
+	public String payment(int bookingId, double money) throws IOException {
 		Booking booking = getBooking(bookingId);
 		boolean paid = booking.payment(money);
 		if (paid) {
 			moveToHistory(booking);
-			if(bookingForVIPCustomer(booking)) {
-				System.out.println("Setting VIP!");
-				booking.getGuest().setVIP(true);
-			}
+			return "Thank you for your payment";
 		}
+		if(bookingForVIPCustomer(booking)) {
+			System.out.println("Setting VIP!");
+			booking.getGuest().setVIP(true);
+			return "Thank you for your payment, VIP";
+		}
+
 		else
-			System.out.println("You offered �" + money
-					+ " but the room costs �" + booking.totalCost());
+			return "You offered �" + money
+					+ " but the room costs �" + booking.totalCost();
 	}
 
 // this method counts how many times a guest booked

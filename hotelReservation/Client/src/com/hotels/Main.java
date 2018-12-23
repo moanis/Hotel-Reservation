@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Main {
     private static boolean MainMenu = true;
     private static boolean SubMenu = true;
-    private static Scanner input = new Scanner(System.in);
+
 
 
     public static void main(String[] args) {
@@ -119,7 +119,7 @@ public class Main {
 
     private static void guestRegister() {
         String name, address, password;
-//       Scanner input = new Scanner(System.in);
+       Scanner input = new Scanner(System.in);
 
 
         do {
@@ -139,7 +139,7 @@ public class Main {
     private static void logIn() {
         int id;
         String password;
-//        Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
         System.out.println("Enter your Id number and your password");
         do {
@@ -159,7 +159,7 @@ public class Main {
 
 
     private static void logout() {
-//        Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         String answer;
 
         System.out.println("Are you sure you want to log out? y/n");
@@ -185,7 +185,7 @@ public class Main {
 
     private static void bookRoom(){
 
-//        Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         String hotelName="";
         String address="";
         String bookedDate="";
@@ -201,9 +201,7 @@ public class Main {
 
             try {
 
-//                System.out.println("Enter your ID");
-//                id = input.nextInt();
-//                input.nextLine();
+
                 System.out.println("Enter the id of your chosen hotel, this info is found in option 4");
                 hotelId = input.nextInt();
                 input.nextLine();
@@ -228,7 +226,7 @@ public class Main {
     private static void useHotelFacilities(){
 
         System.out.println("We provide a range of facilities in our chain of hotels around the world, please select your facility!!");
-//        Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         int answer;
 
             do {

@@ -71,11 +71,10 @@ public class Server {
         connectToServer(new ICommand() {
             @Override
             public void clientCommand(InputStream inputStream, OutputStream outputStream) throws IOException {
-//                int bookingNr;
+
                 outputStream.write(BOOKROOM);
                 byte[] intBytes = new byte[4];
-//                ByteBuffer.wrap(intBytes).putInt(id);
-//                outputStream.write(intBytes);
+
                 ByteBuffer.wrap(intBytes).putInt(hotelId);
                 outputStream.write(intBytes);
                 ByteBuffer.wrap(intBytes).putInt(roomNum);
@@ -121,10 +120,6 @@ public class Server {
             public void clientCommand(InputStream inputStream, OutputStream outputStream) throws IOException {
 
                 outputStream.write(BUYMEAL);
-
-//                byte[] intBytes = new byte[4];
-//                ByteBuffer.wrap(intBytes).putInt(bookingNr);
-//                outputStream.write(intBytes);
 
                 int answer = inputStream.read();
                 if (answer==OKAY){
@@ -293,17 +288,6 @@ public class Server {
                     System.out.println("Error handling your check out request");
                 }
 
-
-
-//                int answer=inputStream.read();
-//                if (answer==OKAY){
-//                    byte[] intBytes = new byte[8];
-//                    int actuallyRead;
-//                    actuallyRead = inputStream.read(intBytes);
-//                    if(actuallyRead != 8)
-//                        return;
-//                    double totalCost = ByteBuffer.wrap(intBytes).getDouble();
-//                    System.out.println("Your bill is: "+totalCost);
 
 
 

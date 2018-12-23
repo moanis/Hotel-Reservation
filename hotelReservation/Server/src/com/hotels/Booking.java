@@ -1,5 +1,6 @@
 package com.hotels;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 //books a room(a booking instance is created). The guest then should arrives and
 //check in at the hotel. The guest then will have access to the room and hotel facilities
 
-public class Booking extends UniqueID {
+public class Booking extends UniqueID implements Serializable {
 
 	private LocalDate dateBooked = null; // Set the date when the booking is created.
 
@@ -96,7 +97,6 @@ public class Booking extends UniqueID {
 
 	public int periodIndays() {
 
-		System.out.println(DateUtils.calculateDays(dateArrived, DateUtils.getToday()));
 		if(dateCheckedOut==null && (DateUtils.isDateBefore(DateUtils.getToday(), dateArrived))) {
 			return numberOfNights;
 		}else if (dateCheckedOut==null && (DateUtils.isDateAfter(DateUtils.getToday(), dateArrived)))
@@ -158,6 +158,12 @@ public class Booking extends UniqueID {
 	public void useGym() {
 		costs.add(new Gym());
 	}
+
+	public LocalDate getDateArrived() {
+		return dateArrived;
+	}
+
+
 
 	public boolean hasArrivalDate(String date) {
 

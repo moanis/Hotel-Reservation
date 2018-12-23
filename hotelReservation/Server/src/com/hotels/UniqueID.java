@@ -1,5 +1,6 @@
 package com.hotels;
 
+import java.io.Serializable;
 import java.util.Random;
 
 
@@ -7,7 +8,7 @@ import java.util.Random;
 //A unique number is only one number across all the system.
 
 
-public abstract class UniqueID {
+public abstract class UniqueID implements Serializable {
     
 
 

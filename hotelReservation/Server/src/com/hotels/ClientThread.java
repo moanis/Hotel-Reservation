@@ -175,7 +175,6 @@ public class ClientThread extends Thread {
         if(actuallyRead != stringLength)
             return;
         arrivalDate = new String(stringBytes);
-        System.out.println(arrivalDate);
         bookingId = bookingSystem.book(id, hotelId, roomNum, bookedDate,arrivalDate, numOfNights);
         outputStream.write(OKAY);
 
@@ -208,8 +207,12 @@ public class ClientThread extends Thread {
 
     private void checkOut() throws IOException{
 
-        if(!bookingSystem.getBooking(bookingId).isPaid() && bookingSystem.getBooking(bookingId).isArrived()
-        && !bookingSystem.getBooking(bookingId).isCheckedOut()) {
+
+
+        if(bookingSystem.doesBookingExist(bookingId) && !bookingSystem.getBooking(bookingId).isPaid()
+                 && bookingSystem.getBooking(bookingId).isArrived() && !bookingSystem.getBooking(bookingId).isCheckedOut()) {
+
+            outputStream.write(OKAY);
             int stringLength = inputStream.read();
             if (stringLength == -1)
                 throw new IOException("end of stream");
@@ -218,21 +221,23 @@ public class ClientThread extends Thread {
             if (actuallyRead != stringLength)
                 return;
             String checkoutDate = new String(stringBytes);
+            System.out.println(checkoutDate);
 
-            if (!DateUtils.isDateValid(checkoutDate)) {
+            if (DateUtils.isDateValid(checkoutDate) && bookingSystem.isCheckoutDateValid(bookingId, checkoutDate)) {
 
-                outputStream.write(FAILURE);
-                System.out.println("check out date is invalid");
-            } else {
-
-
-                bookingSystem.checkout(bookingId, checkoutDate);
                 outputStream.write(OKAY);
-
+                bookingSystem.checkout(bookingId, checkoutDate);
                 byte[] costBytes = new byte[8];
                 ByteBuffer.wrap(costBytes).putDouble(bookingSystem.getBooking(bookingId).totalCost());
                 outputStream.write(costBytes);
-            }
+
+            } else
+                outputStream.write(FAILURE);
+                System.out.println("check out date is invalid");
+
+
+
+
 
 
         }
@@ -371,9 +376,9 @@ public class ClientThread extends Thread {
         System.out.println("id = "+uid+" password "+password);
         if (bookingSystem.validateLogin(uid, password) && !isLoggedIN){
             outputStream.write(OKAY);
-            name=bookingSystem.getCustomer(uid).getName();
+            name=bookingSystem.getGuest(uid).getName();
             System.out.println(name);
-            bookingSystem.getCustomer(uid).setSignedUp(true);
+            bookingSystem.getGuest(uid).setSignedUp(true);
             System.out.println("you have logged in");
             isLoggedIN = true;
 
@@ -439,9 +444,9 @@ public class ClientThread extends Thread {
 
         if(!bookingSystem.doesGuestExists(name, address) && !isLoggedIN) {
             outputStream.write(OKAY);
-            id = bookingSystem.registerCustomer(name, address, password);
+            id = bookingSystem.registerGuest(name, address, password);
             System.out.println("A new guest has been successfully registered and his account details as follow:");
-            System.out.println(bookingSystem.getCustomer(id));
+            System.out.println(bookingSystem.getGuest(id));
 
             byte[] buffer = new byte[4];
             ByteBuffer.wrap(buffer).putInt(id);

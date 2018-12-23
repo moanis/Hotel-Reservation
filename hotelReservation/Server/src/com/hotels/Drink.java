@@ -2,7 +2,9 @@ package com.hotels;
 
 //class decorator
 
-public class Drink extends AdditionalItem {
+import java.io.Serializable;
+
+public class Drink extends AdditionalItem implements Serializable {
     public static final double drinkPrice  = 50.00;
     
     // order a drink at hotel's bar

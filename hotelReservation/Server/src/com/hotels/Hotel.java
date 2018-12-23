@@ -66,7 +66,7 @@ public class Hotel extends Location implements Serializable {
 				if (room.getNumber() == roomNumber)
 				return room;
 		} catch (Exception e) {
-			System.out.println("Cannot find room: " + roomNumber);
+			System.out.println("Room was not found: " + roomNumber);
 			e.printStackTrace();
 		}
 		return null;

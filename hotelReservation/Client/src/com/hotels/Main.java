@@ -263,6 +263,7 @@ public class Main {
 
 
     private static void checkOut(){
+        input = new Scanner(System.in);
 
         System.out.println("please enter the date you want to check out, this is the day you leave the room");
         String checkoutDate = input.nextLine();

@@ -2,8 +2,7 @@ package com.hotels;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-
+import java.util.Date;
 
 
 //A booking system has all the information about hotels,
@@ -168,20 +167,20 @@ public class BookingSystem {
 	}
 
 
-	public int registerCustomer(String name, String address, String password) {
+	public int registerGuest(String name, String address, String password) {
 		Guest guest = new Guest(name, address, password);
 		guests.add(guest);
 		return guest.getId();
 	}
 
 
-	public int book(int customerId, int hotelId, int roomNumber, String bookedDay, String arrivalDate,int nights) throws IOException{
+	public int book(int guestId, int hotelId, int roomNumber, String bookedDay, String arrivalDate,int nights) throws IOException{
 
 		if (bookingExists(hotelId, roomNumber, arrivalDate) || isBookingDateValid(arrivalDate)) {
 			System.out.println("Booking exists for that room on the date.");
 			return -1;
 		} else {
-			Guest guest = getCustomer(customerId);
+			Guest guest = getGuest(guestId);
 			Hotel hotel = getHotel(hotelId);
 			Room room = hotel.getRoom(roomNumber);
 			return addBooking(guest, room, bookedDay, arrivalDate,nights);
@@ -214,11 +213,11 @@ public class BookingSystem {
 	}
 
 
-	public Guest getCustomer(int customerId) throws IOException{
+	public Guest getGuest(int guestId) throws IOException{
 		for (Guest guest : guests)
-			if (guest.getId() == customerId)
+			if (guest.getId() == guestId)
 				return guest;
-		throw new IOException("Cannot find customer: " + customerId);
+		throw new IOException("Cannot find guest: " + guestId);
 	}
 
 
@@ -246,7 +245,7 @@ public class BookingSystem {
 		return false;
 	}
 
-// this method sets that the customer starts using the hotel
+// this method sets that the guest starts using the hotel
 	public void arrive(int bookingId) throws IOException {
 		Booking booking = getBooking(bookingId);
 		booking.setArrived(true);
@@ -259,6 +258,19 @@ public class BookingSystem {
 				return booking;
 		throw new IOException("No booking with id " + bookingId);
 	}
+
+	public boolean doesBookingExist(int bookingId) {
+		boolean exists = false;
+		for (Booking booking : current)
+			if (booking.getId() == bookingId)
+				exists = true;
+			else
+				exists = false;
+
+			return exists;
+
+	}
+
 
 
 	public void useGym(int bookingId) throws IOException {
@@ -286,6 +298,15 @@ public class BookingSystem {
 
 	}
 
+	//the checkout date must be equal or greater than arrival date
+	public boolean isCheckoutDateValid(int bookingId, String date) throws IOException {
+		if (DateUtils.areDatesEquals(DateUtils.parseDate(date), getBooking(bookingId).getDateArrived())
+		|| DateUtils.isDateAfter(DateUtils.parseDate(date), getBooking(bookingId).getDateArrived())) {
+			return true;
+		} else
+			return false;
+	}
+
     //this method finishes the check out process
 	public String payment(int bookingId, double money) throws IOException {
 		Booking booking = getBooking(bookingId);
@@ -294,19 +315,19 @@ public class BookingSystem {
 			moveToHistory(booking);
 			return "Thank you for your payment";
 		}
-		if(bookingForVIPCustomer(booking)) {
+		if(bookingForVIPGuest(booking)) {
 			System.out.println("Setting VIP!");
 			booking.getGuest().setVIP(true);
-			return "Thank you for your payment, VIP";
+			return "Thank you for your payment, VIP guest";
 		}
 
 		else
-			return "You offered �" + money
-					+ " but the room costs �" + booking.totalCost();
+			return "You paid " + money
+					+ " but your bill is " + booking.totalCost();
 	}
 
 // this method counts how many times a guest booked
-	private boolean bookingForVIPCustomer(Booking b) {
+	private boolean bookingForVIPGuest(Booking b) {
 
 		int visits = 0;
 		for(Booking history : history)

@@ -1,10 +1,12 @@
 package com.hotels;
 
 
-// An additional item is something that the customer
+// An additional item is something that the guest
 // can buy or use at the hotel
 
-public abstract class AdditionalItem {
+import java.io.Serializable;
+
+public abstract class AdditionalItem implements Serializable {
     
 
 

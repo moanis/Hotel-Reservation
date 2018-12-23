@@ -263,12 +263,17 @@ public class Server {
 
                 outputStream.write(CHECKOUT);
 
+                int answer=inputStream.read();
+
+                if (answer==OKAY){
+
                 byte[] stringBytes = checkoutDate.getBytes();
                 outputStream.write(stringBytes.length);
                 outputStream.write(stringBytes);
 
-                int answer=inputStream.read();
+                answer=inputStream.read();
                 if (answer==OKAY){
+
                     byte[] intBytes = new byte[8];
                     int actuallyRead;
                     actuallyRead = inputStream.read(intBytes);
@@ -277,8 +282,30 @@ public class Server {
                     double totalCost = ByteBuffer.wrap(intBytes).getDouble();
                     System.out.println("Your bill is: "+totalCost);
 
-                } else
-                    System.out.println("Error handling your request");
+                }else {
+                    System.out.println("the date you entered is invalid");
+                }
+
+
+
+
+                } else {
+                    System.out.println("Error handling your check out request");
+                }
+
+
+
+//                int answer=inputStream.read();
+//                if (answer==OKAY){
+//                    byte[] intBytes = new byte[8];
+//                    int actuallyRead;
+//                    actuallyRead = inputStream.read(intBytes);
+//                    if(actuallyRead != 8)
+//                        return;
+//                    double totalCost = ByteBuffer.wrap(intBytes).getDouble();
+//                    System.out.println("Your bill is: "+totalCost);
+
+
 
             }
         });
@@ -311,7 +338,7 @@ public class Server {
                     System.out.println(paymentCheckAnswer);
 
                 } else
-                    System.out.println("Error handling your request");
+                    System.out.println("Error handling your payment request");
 
             }
         });
@@ -338,7 +365,7 @@ public class Server {
                     if (answer == OKAY) {
                         isLoggedIn=true;
                         System.out.println("you have successfully logged in");
-                    } else System.out.println("logging unsuccessfull");
+                    } else System.out.println("logging unsuccessful");
                 }else
                     System.out.println("you are already logged in, if you want to log in to another account please sign out");
 
@@ -357,7 +384,6 @@ public class Server {
 
                     outputStream.write(LOGOUT);
                 int answer = inputStream.read();
-                System.out.println(answer);
                 if (answer==OKAY) {
                         isLoggedIn=false;
 

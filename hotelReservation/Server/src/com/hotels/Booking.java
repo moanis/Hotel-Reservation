@@ -88,12 +88,7 @@ public class Booking extends UniqueID implements Serializable {
 
 
 
-	// Calculate the length of the stay. The arrival check-in and
-	// the check-out dates ca
-	// n be translated to times in milliseconds.
-	// By subtracting the check-in date from the check0out date and
-	// then translating from milliseconds to days we get the length
-	// of the stay in days...
+	//calculate the days between to dates
 
 	public int periodIndays() {
 

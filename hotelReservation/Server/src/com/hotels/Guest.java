@@ -57,11 +57,10 @@ public class Guest extends Location {
 
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("Guest{");
-		sb.append("id= ").append(getId());
-		sb.append(" name= ").append(getName());
-		sb.append(" address= ").append(getAddress());
-		sb.append('}');
-		return sb.toString();
+
+		return "{"
+				+ "Id=" + getId() + "\t"
+				+ "Name=" + getName() + "\t"
+				+"Address" + getPassword() + "\t";
 	}
 }

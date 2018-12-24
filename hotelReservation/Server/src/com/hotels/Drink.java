@@ -5,12 +5,12 @@ package com.hotels;
 import java.io.Serializable;
 
 public class Drink extends AdditionalItem implements Serializable {
-    public static final double drinkPrice  = 50.00;
-    
+    private static final double drinkPrice  = 50.00;
+
     // order a drink at hotel's bar
 
     public Drink() {
-	super(drinkPrice);
+        super(drinkPrice);
     }
 
 

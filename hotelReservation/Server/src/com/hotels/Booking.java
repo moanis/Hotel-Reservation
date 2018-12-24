@@ -12,9 +12,9 @@ import java.util.ArrayList;
 
 public class Booking extends UniqueID implements Serializable {
 
-	private LocalDate dateBooked = null; // Set the date when the booking is created.
+	private LocalDate dateBooked; // Set the date when the booking is created.
 
-	private LocalDate  dateArrived = null; // Set the date when the guest checks in.
+	private LocalDate  dateArrived; // Set the date when the guest checks in.
 
 	private LocalDate dateCheckedOut = null; // Set the date when the guest checks out.
 
@@ -27,7 +27,7 @@ public class Booking extends UniqueID implements Serializable {
 	private Guest guest;
 
 	private Room room;
-	
+
 	private int numberOfNights;
 
 	private ArrayList<AdditionalItem> costs = new ArrayList<>();
@@ -76,12 +76,12 @@ public class Booking extends UniqueID implements Serializable {
 		return isCheckedOut;
 	}
 
-	public void setDateCheckedOut(LocalDate dateCheckedOut) {
+	private void setDateCheckedOut(LocalDate dateCheckedOut) {
 		this.dateCheckedOut = dateCheckedOut;
 		isCheckedOut = true;
 	}
 
-	public void setPaid(boolean paid) {
+	private void setPaid(boolean paid) {
 		this.paid = paid;
 	}
 
@@ -90,12 +90,12 @@ public class Booking extends UniqueID implements Serializable {
 
 	//calculate the days between to dates
 
-	public int periodIndays() {
+	private int periodIndays() {
 
 		if(dateCheckedOut==null && (DateUtils.isDateBefore(DateUtils.getToday(), dateArrived))) {
 			return numberOfNights;
 		}else if (dateCheckedOut==null && (DateUtils.isDateAfter(DateUtils.getToday(), dateArrived)))
-			return DateUtils.calculateDays(dateArrived, DateUtils.getToday());;
+			return DateUtils.calculateDays(dateArrived, DateUtils.getToday());
 		if (DateUtils.isDateAfter(dateCheckedOut, dateArrived) && !DateUtils.areDatesEquals(dateCheckedOut, dateArrived)
 				&& DateUtils.isDateAfter(dateCheckedOut, DateUtils.getToday())) {
 			return DateUtils.calculateDays(dateArrived, dateCheckedOut);
@@ -138,7 +138,13 @@ public class Booking extends UniqueID implements Serializable {
 		return isPaid();
 	}
 
+	public LocalDate getDateBooked() {
+		return dateBooked;
+	}
 
+	public LocalDate getDateCheckedOut() {
+		return dateCheckedOut;
+	}
 
 	public void buyDrink() {
 		costs.add(new Drink());
@@ -170,22 +176,19 @@ public class Booking extends UniqueID implements Serializable {
 
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("{");
-		sb.append("dateBooked=").append(dateBooked).append("\n");
-		sb.append(", dateArrived=").append(dateArrived).append("\n");
-		sb.append(", dateCheckedOut=").append(dateCheckedOut).append("\n");
-		sb.append(", arrived=").append(arrived).append("\n");
-		sb.append(", paid=").append(paid).append("\n");
-		sb.append(", guest=").append(guest).append("\n");
-		sb.append(", room=").append(getRoom()).append("\n");
-		sb.append(", numberOfNights=").append(numberOfNights).append("\n");
-		sb.append(", costs=").append(costs);
-		sb.append(", totalCost=").append(totalCost());
-		sb.append("\n");
-		sb.append('}');
-		sb.append("\n");
 
-		return sb.toString();
+		return "\n" + "{ dateBooked=" + dateBooked + "\t"
+				+ ", dateArrived=" + dateArrived + "\t"
+				+ ", dateCheckedOut=" + dateCheckedOut + "\n"
+				+ ", arrived=" + isArrived() + "\t"
+				+ ", paid=" + isPaid() +"\t"
+				+ ", nights nr=" + numberOfNights + "\n"
+				+ ", room=" + getRoom()
+
+				+ ", costs=" + getCosts().toString() + "\n"
+				+",total cost=" + totalCost() + "\n"
+				+ "}";
+
 	}
 
 

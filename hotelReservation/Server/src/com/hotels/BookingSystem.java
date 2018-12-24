@@ -2,7 +2,6 @@ package com.hotels;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
 
 //A booking system has all the information about hotels,
@@ -71,12 +70,12 @@ public class BookingSystem {
 	public int addHotel(String name, String address)  throws IOException{
 
 
-			if(!hotelExist(name, address)) {
-				Hotel hotel = new Hotel(name, address);
+		if(!hotelExist(name, address)) {
+			Hotel hotel = new Hotel(name, address);
 
-				hotels.add(hotel);
-				return hotel.getId();
-			}
+			hotels.add(hotel);
+			return hotel.getId();
+		}
 
 		throw new IOException("Hotel exists");
 
@@ -105,7 +104,7 @@ public class BookingSystem {
 		if (city != null) {
 			for (Hotel hot : hotels) {
 				if (hot.getAddress().equalsIgnoreCase(city)) {
-					hotel = hotel + hot.toString();
+					hotel += hot.toString();
 				}
 			}
 
@@ -132,11 +131,11 @@ public class BookingSystem {
 
 
 
-	public boolean hotelExist(String name, String address) {
+	private boolean hotelExist(String name, String address) {
 		for (Hotel hotel : hotels)
 			if (hotel.getName().equalsIgnoreCase(name) && hotel.getAddress().equalsIgnoreCase(address))
 				return true;
-			return false;
+		return false;
 
 	}
 
@@ -157,7 +156,7 @@ public class BookingSystem {
 
 
 
-	public int getHotelId(String name, String address) throws IOException {
+	private int getHotelId(String name, String address) throws IOException {
 
 		for (Hotel hotel : hotels)
 			if (hotel.getName().equalsIgnoreCase(name) && hotel.getAddress().equalsIgnoreCase(address))
@@ -197,7 +196,7 @@ public class BookingSystem {
 		Hotel hotel = getHotel(hotelId);
 		Room room = hotel.getRoom(roomNumber);
 
-		for(Booking b : current) 
+		for(Booking b : current)
 			if(b.getRoom() == room && b.hasArrivalDate(date))
 				return true;
 		return false;
@@ -207,7 +206,7 @@ public class BookingSystem {
 	private int addBooking(Guest guest, Room room, String bookedDay, String arrivalDate, int nights) {
 
 		Booking b = new Booking(guest, room, bookedDay,arrivalDate, nights);
-		room.setStatus(Room.RoomStatus.OCCUIPIED);
+		room.setStatus(Room.RoomStatus.OCCUPIED);
 		current.add(b);
 		return b.getId();
 	}
@@ -237,15 +236,15 @@ public class BookingSystem {
 
 	public boolean doesGuestExists(String name, String address){
 
-			for (Guest guest : guests) {
-				if (guest.getName().equals(name) && guest.getAddress().equals(address))
-					return true;
-			}
+		for (Guest guest : guests) {
+			if (guest.getName().equals(name) && guest.getAddress().equals(address))
+				return true;
+		}
 
 		return false;
 	}
 
-// this method sets that the guest starts using the hotel
+	// this method sets that the guest starts using the hotel
 	public void arrive(int bookingId) throws IOException {
 		Booking booking = getBooking(bookingId);
 		booking.setArrived(true);
@@ -262,12 +261,9 @@ public class BookingSystem {
 	public boolean doesBookingExist(int bookingId) {
 		boolean exists = false;
 		for (Booking booking : current)
-			if (booking.getId() == bookingId)
-				exists = true;
-			else
-				exists = false;
+			exists = booking.getId() == bookingId;
 
-			return exists;
+		return exists;
 
 	}
 
@@ -285,13 +281,13 @@ public class BookingSystem {
 		booking.buyDrink();
 	}
 
-    //this methods add meal to account
+	//this methods add meal to account
 	public void buyMeal(int bookingId) throws IOException {
 		Booking booking = getBooking(bookingId);
 		booking.buyMeal();
 	}
 
-    //this method sets the checkout date
+	//this method sets the checkout date
 	public void checkout(int bookingId, String date) throws IOException {
 		Booking booking = getBooking(bookingId);
 		booking.checkout(date);
@@ -300,45 +296,41 @@ public class BookingSystem {
 
 	//the checkout date must be equal or greater than arrival date
 	public boolean isCheckoutDateValid(int bookingId, String date) throws IOException {
-		if (DateUtils.areDatesEquals(DateUtils.parseDate(date), getBooking(bookingId).getDateArrived())
-		|| DateUtils.isDateAfter(DateUtils.parseDate(date), getBooking(bookingId).getDateArrived())) {
-			return true;
-		} else
-			return false;
+		return DateUtils.isDateAfter(DateUtils.parseDate(date), getBooking(bookingId).getDateArrived());
 	}
 
-    //this method finishes the check out process
+	//this method finishes the check out process
 	public String payment(int bookingId, double money) throws IOException {
 		Booking booking = getBooking(bookingId);
 		boolean paid = booking.payment(money);
 		if (paid) {
 			moveToHistory(booking);
-			return "Thank you for your payment. your change is " + (money-booking.totalCost());
+			return "Thank you "+booking.getGuest().getName().toUpperCase()+" for your payment. your change is " + (money-booking.totalCost());
 		}
 		if(bookingForVIPGuest(booking)) {
 			System.out.println("Setting VIP!");
 			booking.getGuest().setVIP(true);
-			return "Thank you for your payment, VIP guest";
+			return "Thank you " + booking.getGuest().getName().toUpperCase()+" for your payment, VIP guest";
 		}
 
 		else
-			return "You paid " + money
+			return booking.getGuest().getName().toUpperCase()+", you paid " + money
 					+ " but your bill is " + booking.totalCost();
 	}
 
 
 
-// this method counts how many times a guest booked
+	// this method counts how many times a guest booked
 	private boolean bookingForVIPGuest(Booking b) {
 
 		int visits = 0;
 		for(Booking history : history)
 			if(history.getGuest() == b.getGuest())
 				visits++;
-		return visits >= 5;
+		return visits >= 2;
 	}
 
-// when the guest checks out and paid, his booking details will be moved to history list
+	// when the guest checks out and paid, his booking details will be moved to history list
 	private void moveToHistory(Booking booking) {
 		current.remove(booking);
 		history.add(booking);
@@ -347,18 +339,14 @@ public class BookingSystem {
 
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("BookingSystem");
-		sb.append("\n");
-		sb.append("guests=").append(guests);
-		sb.append("\n");
-		sb.append("hotels=").append(hotels);
-		sb.append("\n");
-		sb.append("current=").append(current);
-		sb.append("\n");
-		sb.append("booking history=").append(history);
-		sb.append("\n");
 
-		return sb.toString();
+
+        return "BOOKING SYSTEM \n"
+                + "GUESTs==>\n" + getGuests() + "\n"
+                + "HOTELS==>\n" + getHotels() + "\n"
+                + "CURRENT==>\n" + getCurrent() + "\n"
+                + "HISTORY==>\n" + getHistory();
+
 	}
 
 }

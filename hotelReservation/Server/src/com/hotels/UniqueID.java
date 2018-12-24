@@ -9,14 +9,14 @@ import java.util.Random;
 
 
 public abstract class UniqueID implements Serializable {
-    
+
 
 
     private static int counter = 0;
     private Random rand = new Random();
 
 
-    private int id = rand.nextInt(10000);;
+    private int id = rand.nextInt(10000);
 
 
     public synchronized int getId() {

@@ -5,16 +5,14 @@ package com.hotels;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Main {
+public class MainClient {
     private static boolean MainMenu = true;
     private static boolean SubMenu = true;
-    private static Scanner input = new Scanner(System.in);
+    private static Scanner input;
 
 
     public static void main(String[] args) {
-
-
-        Scanner input = new Scanner(System.in);
+        input = new Scanner(System.in);
 
         while (MainMenu) {
             while (SubMenu) {
@@ -59,7 +57,7 @@ public class Main {
                         break;
                     case 5:
                         bookRoom();
-                    break;
+                        break;
                     case 6:
                         Server.checkIn();
                         break;
@@ -75,9 +73,7 @@ public class Main {
                     case 10:
                         payment();
                         break;
-                    case 0:
-                        Server.exit();
-                        break;
+
                     case 11:
                         Server.loadFiles();
                         break;
@@ -87,36 +83,32 @@ public class Main {
                         System.out.println("Invalid Selection");
                         break;
                 }
-                    System.out.println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨");
-                    System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                    System.out.println("Would you like to Select another Option\n1 ) Yes\n2 ) No");
-                    System.out.println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨");
-                    System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                    if (input.nextInt() == 1) {
-                        SubMenu = true;
-                    } else {
-                        SubMenu = false;
-                    }
-                }
-                SubMenu = true;
                 System.out.println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨");
                 System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                System.out.println("Would You Like To Continue With The Program\n1 ) Yes\n2 ) No");
+                System.out.println("Would you like to Select another Option\n1 ) Yes\n2 ) No");
                 System.out.println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨");
                 System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                if (input.nextInt() == 1) {
-                    MainMenu = true;
-                } else {
-                    System.out.println("");
-                    System.exit(0);
+                SubMenu = input.nextInt() == 1;
+            }
+            SubMenu = true;
+            System.out.println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨");
+            System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+            System.out.println("Would You Like To Continue With The Program\n1 ) Yes\n2 ) No");
+            System.out.println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨");
+            System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+            if (input.nextInt() == 1) {
+                MainMenu = true;
+            } else {
 
-                }
-
+                System.exit(0);
 
             }
 
 
         }
+
+
+    }
 
 
 
@@ -125,7 +117,7 @@ public class Main {
 
     private static void guestRegister() {
         String name, address, password;
-//       Scanner input = new Scanner(System.in);
+        input = new Scanner(System.in);
 
 
         do {
@@ -145,7 +137,7 @@ public class Main {
     private static void logIn() {
         int id;
         String password;
-//        Scanner input = new Scanner(System.in);
+        input = new Scanner(System.in);
 
         System.out.println("Enter your Id number and your password");
         do {
@@ -165,7 +157,7 @@ public class Main {
 
 
     private static void logout() {
-//        Scanner input = new Scanner(System.in);
+        input = new Scanner(System.in);
         String answer;
 
         System.out.println("Are you sure you want to log out? y/n");
@@ -190,13 +182,10 @@ public class Main {
 
 
     private static void bookRoom(){
+        input = new Scanner(System.in);
 
-//        Scanner input = new Scanner(System.in);
-        String hotelName="";
-        String address="";
         String bookedDate="";
         String arrivalDate="";
-        int id=0;
         int hotelId=0;
         int roomNum=0;
         int numOfNigh=0;
@@ -205,65 +194,62 @@ public class Main {
         System.out.println("To book a room you need your Id Nr, hotel's Id, room number, date of booking , date of arrival and number of nights");
 
 
-            try {
+        try {
 
-//                System.out.println("Enter your ID");
-//                id = input.nextInt();
-//                input.nextLine();
-                System.out.println("Enter the id of your chosen hotel, this info is found in option 4");
-                hotelId = input.nextInt();
-                input.nextLine();
-                System.out.println("Enter the number of your chosen room, the rooms numbers are shown in option 4");
-                roomNum = input.nextInt();
-                input.nextLine();
-                System.out.println("Enter the booking date(dd/MM/yyyy)... the booking date must be no later than today");
-                bookedDate = input.nextLine();
-                System.out.println("Enter the arrival date(dd/MM/yyyy)... arrival date could be from today and later on");
-                arrivalDate = input.nextLine();
-                System.out.println("Enter number of nights");
-                numOfNigh = input.nextInt();
-            } catch (InputMismatchException e) {
-                e.printStackTrace();
-            }
+            System.out.println("Enter the id of your chosen hotel, this info is found in option 4");
+            hotelId = input.nextInt();
+            input.nextLine();
+            System.out.println("Enter the number of your chosen room, the rooms numbers are shown in option 4");
+            roomNum = input.nextInt();
+            input.nextLine();
+            System.out.println("Enter the booking date(dd/MM/yyyy)... the booking date must be no later than today");
+            bookedDate = input.nextLine();
+            System.out.println("Enter the arrival date(dd/MM/yyyy)... arrival date could be from today and later on");
+            arrivalDate = input.nextLine();
+            System.out.println("Enter number of nights");
+            numOfNigh = input.nextInt();
+        } catch (InputMismatchException e) {
+            e.printStackTrace();
+        }
 
 
-            Server.bookRoom(hotelId, roomNum,numOfNigh,bookedDate,arrivalDate);
+        Server.bookRoom(hotelId, roomNum,numOfNigh,bookedDate,arrivalDate);
     }
 
 
     private static void useHotelFacilities(){
 
         System.out.println("We provide a range of facilities in our chain of hotels around the world, please select your facility!!");
-//        Scanner input = new Scanner(System.in);
+        input = new Scanner(System.in);
         int answer;
 
-            do {
-                System.out.println("1. Buy a meal");
-                System.out.println("2. Buy a drink");
-                System.out.println("3. gym/spa");
-                System.out.println("4. return to main list");
-                answer = input.nextInt();
+        do {
+            System.out.println("1. Buy a meal");
+            System.out.println("2. Buy a drink");
+            System.out.println("3. gym/spa");
+            System.out.println("4. return to main list");
+            answer = input.nextInt();
 
-                switch(answer){
-                    case 1:
-                        Server.buyMeal();
-                        break;
-                    case 2:
-                        Server.buyDrink();
-                        break;
-                    case 3:
-                        Server.useGym();
-                        break;
-                    case 4:
-                        break;
+            switch(answer){
+                case 1:
+                    Server.buyMeal();
+                    break;
+                case 2:
+                    Server.buyDrink();
+                    break;
+                case 3:
+                    Server.useGym();
+                    break;
+                case 4:
+                    break;
 
-                        default:
-                            System.out.println("Invalid selection");
-                            break;
+                default:
+                    System.out.println("Invalid selection");
+                    break;
 
 
-                }
-            } while (answer != 4);
+            }
+        } while (answer != 4);
 
     }
 
@@ -287,16 +273,9 @@ public class Main {
         Server.payment(amount);
     }
 
-    private static void exitProgram(){
-        Server.exit();
 
 
-
-    }
-
-
-
-    }
+}
 
 
 

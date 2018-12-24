@@ -6,7 +6,7 @@ import java.io.Serializable;
 //abstract class that is for classes using names  and addresses
 // it also extends the UniqueId class to produce arbitrary numbers.
 public abstract class Location extends UniqueID implements Serializable {
-    
+
 
 
 
@@ -20,37 +20,36 @@ public abstract class Location extends UniqueID implements Serializable {
     }
 
     public Location(String name, String address) {
-	super();
-	this.name = name;
-	this.address = address;
+        super();
+        this.name = name;
+        this.address = address;
 
     }
 
     public String getAddress() {
-	return address;
+        return address;
     }
 
     public String getName() {
-	return name;
+        return name;
     }
 
     public void setAddress(String address) {
-	this.address = address;
+        this.address = address;
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder(getClass().getSimpleName()+"{");
-        sb.append("id=").append(getId());
-        sb.append(" name='").append(name).append('\'');
-        sb.append(" address='").append(address).append('\'');
-        sb.append('}');
-        sb.append("\n");
-        return sb.toString();
+
+
+        return getClass().getSimpleName()
+                + "id=" + getId()
+                + " name=" + getName()
+                + " address=" + getAddress() + "\n\n";
     }
 }

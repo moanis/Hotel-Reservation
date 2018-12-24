@@ -10,11 +10,11 @@ import java.io.Serializable;
 
 
 public class Room extends UniqueID implements Serializable {
-    
+
 
 
     public enum RoomStatus {
-        EMPTY, OCCUIPIED;
+        EMPTY, OCCUPIED
 
     }
 
@@ -28,37 +28,33 @@ public class Room extends UniqueID implements Serializable {
     public Room(RoomType type, int number) {
 
         super();
-        if(status == null || status == RoomStatus.EMPTY) {
+
             this.type = type;
             this.number = number;
             this.status = RoomStatus.EMPTY;
-
-        }
 
 
     }
 
     public boolean isEmpty(Room room) {
-        if (room.status == RoomStatus.EMPTY)
-            return true;
-        return false;
+        return room.status == RoomStatus.EMPTY;
     }
 
     public int getNumber() {
-	return number;
+        return number;
     }
 
     public RoomType getType() {
-	return type;
+        return type;
     }
 
 
     public void setNumber(int number) {
-	this.number = number;
+        this.number = number;
     }
 
     public void setType(RoomType type) {
-	this.type = type;
+        this.type = type;
     }
 
     public RoomStatus getStatus() {
@@ -73,13 +69,11 @@ public class Room extends UniqueID implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("\n");
-        sb.append("ID = ").append(getId()).append("\n");
-        sb.append("Room nr= ").append(getNumber()).append("\n");
-        sb.append("Type= ").append(getType()).append("\n");
-        sb.append("Status= ").append(getStatus()).append("\n");
 
-        return sb.toString();
+        return "ID=" + getId() + "\t"
+                + "Room nr=" + getNumber() + "\t"
+                + "Type=" + getType() + "\t"
+                + "Status=" + getStatus() + "\n";
     }
 
 

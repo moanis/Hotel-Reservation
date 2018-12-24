@@ -6,35 +6,33 @@ import java.io.Serializable;
 
 
 public abstract class RoomType implements Serializable {
-    
+
 
     public enum Type {
-	Single, Double, Family, Suite
+        Single, Double, Family, Suite
     }
 
     private double price;
 
     public RoomType(double price) {
-	super();
-	this.price = price;
+        super();
+        this.price = price;
     }
 
     public double getPrice() {
-	return price;
+        return price;
     }
 
 
     public void setPrice(double price) {
-	this.price = price;
+        this.price = price;
     }
 
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder(getClass().getSimpleName());
-        sb.append(" Cost=").append(getPrice());
 
-        return sb.toString();
+        return getClass().getSimpleName() + " Cost=" + getPrice();
     }
 
 

@@ -16,10 +16,10 @@ public class DateUtils {
 //    private static final String dateBeforeString = null;
 //    private static final String dateAfterString = null;
 
-// this methods calculates the number days between two given dates
+    // this methods calculates the number days between two given dates
     public static int calculateDays(LocalDate dateBefore, LocalDate dateAfter) {
 
-        long noOfDaysBetween = 0;
+        long noOfDaysBetween;
         try {
             noOfDaysBetween = ChronoUnit.DAYS.between(dateBefore, dateAfter);
         } catch(DateTimeParseException exc){
@@ -31,7 +31,7 @@ public class DateUtils {
     }
 
 
-// this method takes a date string and parse it and return a LocalDate object
+    // this method takes a date string and parse it and return a LocalDate object
     public static LocalDate parseDate(String date){
 
 
@@ -47,7 +47,7 @@ public class DateUtils {
 
     }
 
-//this methods return the current day
+    //this methods return the current day
     public static LocalDate getToday() {
         return today;
     }
@@ -57,7 +57,7 @@ public class DateUtils {
         return today.format(df);
     }
 
-//this method validate a given date...
+    //this method validate a given date...
     public static boolean isDateValid(String date) {
 
         try {

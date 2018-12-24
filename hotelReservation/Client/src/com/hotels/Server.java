@@ -30,14 +30,14 @@ public class Server {
     private static final int LOGOUT = 107;
 
     private static final int OKAY = 200;
-    public static final int FAILURE = 201;
+    private static final int FAILURE = 201;
     private static final String HOST = "127.0.0.1";
     private static final int PORT = 3000;
 
 
     private static boolean isLoggedIn=false;
     private static boolean isSignedUp=false;
-//    private static int bookingNr;
+
 
 
 
@@ -61,9 +61,15 @@ public class Server {
                         stringBuilder.append(new String(buffer, 0, actuallyRead));
                     }
                     String messageFromServer = stringBuilder.toString();
+                    System.out.println("*******************************************************");
                     System.out.println("Hotels Details: " + messageFromServer);
-                } else
+                    System.out.println("*******************************************************");
+
+                } else {
+                    System.out.println("*******************************************************");
                     System.out.println("To view hotels list, you have to be logged int");
+                    System.out.println("*******************************************************");
+                }
 
 
             }
@@ -73,11 +79,8 @@ public class Server {
         connectToServer(new ICommand() {
             @Override
             public void clientCommand(InputStream inputStream, OutputStream outputStream) throws IOException {
-//                int bookingNr;
                 outputStream.write(BOOKROOM);
                 byte[] intBytes = new byte[4];
-//                ByteBuffer.wrap(intBytes).putInt(id);
-//                outputStream.write(intBytes);
                 ByteBuffer.wrap(intBytes).putInt(hotelId);
                 outputStream.write(intBytes);
                 ByteBuffer.wrap(intBytes).putInt(roomNum);
@@ -102,11 +105,14 @@ public class Server {
                     if(actuallyRead != 4)
                         return;
                     int bookingNr = ByteBuffer.wrap(intBytes).getInt();
+                    System.out.println("*******************************************************");
                     System.out.println("We'd like to thank you for choosing out hotels network, you have successfully booked a room,\n "
                             +" the system generated a booking reference number ("+bookingNr+"). This reference is needed to process your booking");
-
-                }else
+                    System.out.println("*******************************************************");
+                }else {
                     System.out.println("One or some data entered are invalid, please try again!!");
+                    System.out.println("*******************************************************");
+                }
 
 
 
@@ -123,11 +129,6 @@ public class Server {
             public void clientCommand(InputStream inputStream, OutputStream outputStream) throws IOException {
 
                 outputStream.write(BUYMEAL);
-
-//                byte[] intBytes = new byte[4];
-//                ByteBuffer.wrap(intBytes).putInt(bookingNr);
-//                outputStream.write(intBytes);
-
                 int answer = inputStream.read();
                 if (answer==OKAY){
                     int stringLength = inputStream.read();
@@ -138,11 +139,20 @@ public class Server {
                     if(actuallyRead != stringLength)
                         return;
                     String message = new String(stringBytes);
+                    System.out.println("*******************************************************");
                     System.out.println(message);
-                }else if(answer==FAILURE)
+                    System.out.println("*******************************************************");
+                }else if(answer==FAILURE) {
+                    System.out.println("*******************************************************");
                     System.out.println("The guest hasn't checked in yet");
-                else
+                    System.out.println("*******************************************************");
+                }
+                else {
+                    System.out.println("*******************************************************");
                     System.out.println("error handling your Meal request");
+                    System.out.println("*******************************************************");
+                }
+
 
 
             }
@@ -167,11 +177,18 @@ public class Server {
                     if(actuallyRead != stringLength)
                         return;
                     String message = new String(stringBytes);
+                    System.out.println("*******************************************************");
                     System.out.println(message);
-                }else if(answer==FAILURE)
+                    System.out.println("*******************************************************");
+                }else if(answer==FAILURE) {
+                    System.out.println("*******************************************************");
                     System.out.println("The guest hasn't checked in yet");
-                else
-                        System.out.println("error handling your Drink request");
+                    System.out.println("*******************************************************");
+                } else {
+                    System.out.println("*******************************************************");
+                    System.out.println("error handling your Drink request");
+                    System.out.println("*******************************************************");
+                }
 
             }
         });
@@ -193,12 +210,20 @@ public class Server {
                         stringBuilder.append(new String(buffer, 0, actuallyRead));
                     }
                     String messageFromServer = stringBuilder.toString();
+                    System.out.println("*******************************************************");
                     System.out.println(messageFromServer);
+                    System.out.println("*******************************************************");
 
-                } else if(answer==FAILURE)
+                } else if(answer==FAILURE) {
+                    System.out.println("*******************************************************");
                     System.out.println("The guest hasn't checked in yet");
-                else
-                        System.out.println("error handling your Gym request");
+                    System.out.println("*******************************************************");
+                }
+                else {
+                    System.out.println("*******************************************************");
+                    System.out.println("error handling your Gym request");
+                    System.out.println("*******************************************************");
+                }
             }
         });
     }
@@ -221,10 +246,15 @@ public class Server {
                         stringBuilder.append(new String(buffer, 0, actuallyRead));
                     }
                     String messageFromServer = stringBuilder.toString();
+                    System.out.println("*******************************************************");
                     System.out.println(messageFromServer);
+                    System.out.println("*******************************************************");
 
-                } else
-                    System.out.println("Error handling your request");
+                } else {
+                    System.out.println("*******************************************************");
+                    System.out.println("Error handling displaying bookings request");
+                    System.out.println("*******************************************************");
+                }
 
             }
         });
@@ -248,9 +278,14 @@ public class Server {
                     if(actuallyRead != stringLength)
                         return;
                     String message = new String(stringBytes);
+                    System.out.println("*******************************************************");
                     System.out.println(message);
-                } else
+                    System.out.println("*******************************************************");
+                } else {
+                    System.out.println("*******************************************************");
                     System.out.println("you're already checked in");
+                    System.out.println("*******************************************************");
+                }
 
             }
         });
@@ -269,44 +304,35 @@ public class Server {
 
                 if (answer==OKAY){
 
-                byte[] stringBytes = checkoutDate.getBytes();
-                outputStream.write(stringBytes.length);
-                outputStream.write(stringBytes);
+                    byte[] stringBytes = checkoutDate.getBytes();
+                    outputStream.write(stringBytes.length);
+                    outputStream.write(stringBytes);
 
-                answer=inputStream.read();
-                if (answer==OKAY){
+                    answer=inputStream.read();
+                    if (answer==OKAY){
 
-                    byte[] intBytes = new byte[8];
-                    int actuallyRead;
-                    actuallyRead = inputStream.read(intBytes);
-                    if(actuallyRead != 8)
-                        return;
-                    double totalCost = ByteBuffer.wrap(intBytes).getDouble();
-                    System.out.println("Your bill is: "+totalCost);
+                        byte[] intBytes = new byte[8];
+                        int actuallyRead;
+                        actuallyRead = inputStream.read(intBytes);
+                        if(actuallyRead != 8)
+                            return;
+                        double totalCost = ByteBuffer.wrap(intBytes).getDouble();
+                        System.out.println("*******************************************************");
+                        System.out.println("Your bill is: "+totalCost);
+                        System.out.println("*******************************************************");
 
-                }else {
-                    System.out.println("the date you entered is invalid");
-                }
-
-
+                    }else {
+                        System.out.println("*******************************************************");
+                        System.out.println("the date you entered is invalid");
+                        System.out.println("*******************************************************");
+                    }
 
 
                 } else {
+                    System.out.println("*******************************************************");
                     System.out.println("Error handling your check out request");
+                    System.out.println("*******************************************************");
                 }
-
-
-
-//                int answer=inputStream.read();
-//                if (answer==OKAY){
-//                    byte[] intBytes = new byte[8];
-//                    int actuallyRead;
-//                    actuallyRead = inputStream.read(intBytes);
-//                    if(actuallyRead != 8)
-//                        return;
-//                    double totalCost = ByteBuffer.wrap(intBytes).getDouble();
-//                    System.out.println("Your bill is: "+totalCost);
-
 
 
             }
@@ -337,10 +363,15 @@ public class Server {
                     if (actuallyRead != stringLength)
                         return;
                     String paymentCheckAnswer = new String(stringBytes);
+                    System.out.println("*******************************************************");
                     System.out.println(paymentCheckAnswer);
+                    System.out.println("*******************************************************");
 
-                } else
+                } else {
+                    System.out.println("*******************************************************");
                     System.out.println("Error handling your payment request");
+                    System.out.println("*******************************************************");
+                }
 
             }
         });
@@ -354,9 +385,14 @@ public class Server {
                 outputStream.write(EXIT);
                 int answer = inputStream.read();
                 if (answer==OKAY) {
+                    System.out.println("*******************************************************");
                     System.out.println("Saved to files");
-                }else
+                    System.out.println("*******************************************************");
+                }else {
+                    System.out.println("*******************************************************");
                     System.out.println("Error saving to files");
+                    System.out.println("*******************************************************");
+                }
             }
         });
     }
@@ -368,10 +404,15 @@ public class Server {
                 outputStream.write(LOADFILES);
                 int answer = inputStream.read();
                 if(answer==OKAY) {
+                    System.out.println("*******************************************************");
                     System.out.println("Loading files was successful");
+                    System.out.println("*******************************************************");
                 }
-                else
+                else {
+                    System.out.println("*******************************************************");
                     System.out.println("Loading files wasn't successful");
+                    System.out.println("*******************************************************");
+                }
             }
         });
     }
@@ -396,10 +437,19 @@ public class Server {
                     int answer = inputStream.read();
                     if (answer == OKAY) {
                         isLoggedIn=true;
+                        System.out.println("*******************************************************");
                         System.out.println("you have successfully logged in");
-                    } else System.out.println("logging unsuccessful");
-                }else
+                        System.out.println("*******************************************************");
+                    } else {
+                        System.out.println("*******************************************************");
+                        System.out.println("logging unsuccessful");
+                        System.out.println("*******************************************************");
+                    }
+                }else {
+                    System.out.println("*******************************************************");
                     System.out.println("you are already logged in, if you want to log in to another account please sign out");
+                    System.out.println("*******************************************************");
+                }
 
             }
 
@@ -414,10 +464,10 @@ public class Server {
             public void clientCommand(InputStream inputStream, OutputStream outputStream) throws IOException {
 
 
-                    outputStream.write(LOGOUT);
+                outputStream.write(LOGOUT);
                 int answer = inputStream.read();
                 if (answer==OKAY) {
-                        isLoggedIn=false;
+                    isLoggedIn=false;
 
                     int nameLength = inputStream.read();
                     if(nameLength == -1)
@@ -427,10 +477,15 @@ public class Server {
                     if(actuallyRead != nameLength)
                         return;
                     String name = new String(userNameBytes);
-                        System.out.println("you have logged out. Good bye " + name);
+                    System.out.println("*******************************************************");
+                    System.out.println("you have logged out. Good bye " + name);
+                    System.out.println("*******************************************************");
                 }
-                    else
+                else {
+                    System.out.println("*******************************************************");
                     System.out.println("you are not logged in");
+                    System.out.println("*******************************************************");
+                }
 
             }
 
@@ -464,10 +519,15 @@ public class Server {
                     if(actuallyRead != 4)
                         throw new IOException("invalid first parameter");
                     int id = ByteBuffer.wrap(buffer).getInt();
+                    System.out.println("*******************************************************");
                     System.out.println("you have successfully registered, we have automatically generated a unique Id (" + id + ") that you should use to login along with your password");
+                    System.out.println("*******************************************************");
                     isSignedUp=true;
-                } else
+                } else {
+                    System.out.println("*******************************************************");
                     System.out.println("this account is already exists, if you forget your details please contact us");
+                    System.out.println("*******************************************************");
+                }
             }
         });
     }

@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 
-public class Main {
+public class MainServer {
 
     public static void main(String[] args) throws IOException {
 
@@ -14,7 +14,7 @@ public class Main {
     }
 
 
-    public static void startServerSocket() throws IOException {
+    private static void startServerSocket() throws IOException {
 
         BookingSystem bookingSystem = new BookingSystem();
 
@@ -41,7 +41,7 @@ public class Main {
 
         int c1 = bookingSystem.registerGuest("monis", "london", "koko");
         int b1 = bookingSystem.book(c1, hotel1, 10, "15/12/2018","18/12/2018", 3);
-
+        System.out.println(bookingSystem.toString());
 
         bookingSystem.arrive(b1);
         bookingSystem.buyMeal(b1);

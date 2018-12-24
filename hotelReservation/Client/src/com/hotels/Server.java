@@ -22,6 +22,8 @@ public class Server {
     private static final int DISPLAYBOOKINGS = 110;
     private static final int CHECKIN=111;
     private static final int PAYMENT=113;
+    private static final int EXIT = 114;
+    private static final int LOADFILES = 115;
     private static final int CHECKOUT=112;
     private static final int LOGIN = 105;
     private static final int SIGNUP = 106;
@@ -71,10 +73,11 @@ public class Server {
         connectToServer(new ICommand() {
             @Override
             public void clientCommand(InputStream inputStream, OutputStream outputStream) throws IOException {
-
+//                int bookingNr;
                 outputStream.write(BOOKROOM);
                 byte[] intBytes = new byte[4];
-
+//                ByteBuffer.wrap(intBytes).putInt(id);
+//                outputStream.write(intBytes);
                 ByteBuffer.wrap(intBytes).putInt(hotelId);
                 outputStream.write(intBytes);
                 ByteBuffer.wrap(intBytes).putInt(roomNum);
@@ -120,6 +123,10 @@ public class Server {
             public void clientCommand(InputStream inputStream, OutputStream outputStream) throws IOException {
 
                 outputStream.write(BUYMEAL);
+
+//                byte[] intBytes = new byte[4];
+//                ByteBuffer.wrap(intBytes).putInt(bookingNr);
+//                outputStream.write(intBytes);
 
                 int answer = inputStream.read();
                 if (answer==OKAY){
@@ -290,6 +297,17 @@ public class Server {
 
 
 
+//                int answer=inputStream.read();
+//                if (answer==OKAY){
+//                    byte[] intBytes = new byte[8];
+//                    int actuallyRead;
+//                    actuallyRead = inputStream.read(intBytes);
+//                    if(actuallyRead != 8)
+//                        return;
+//                    double totalCost = ByteBuffer.wrap(intBytes).getDouble();
+//                    System.out.println("Your bill is: "+totalCost);
+
+
 
             }
         });
@@ -324,6 +342,36 @@ public class Server {
                 } else
                     System.out.println("Error handling your payment request");
 
+            }
+        });
+    }
+
+
+    public static void exit() {
+        connectToServer(new ICommand() {
+            @Override
+            public void clientCommand(InputStream inputStream, OutputStream outputStream) throws IOException {
+                outputStream.write(EXIT);
+                int answer = inputStream.read();
+                if (answer==OKAY) {
+                    System.out.println("Saved to files");
+                }else
+                    System.out.println("Error saving to files");
+            }
+        });
+    }
+
+    public static void loadFiles() {
+        connectToServer(new ICommand() {
+            @Override
+            public void clientCommand(InputStream inputStream, OutputStream outputStream) throws IOException {
+                outputStream.write(LOADFILES);
+                int answer = inputStream.read();
+                if(answer==OKAY) {
+                    System.out.println("Loading files was successful");
+                }
+                else
+                    System.out.println("Loading files wasn't successful");
             }
         });
     }
@@ -468,28 +516,6 @@ public class Server {
     }
 
 
-    public static void writeStringToBytes(OutputStream outputStream, String value) throws IOException{
-        byte[] buffer = value.getBytes();
-        outputStream.write(buffer.length);
-        outputStream.write(buffer);
-    }
-
-    public static String readStringFromBytes(InputStream inputStream) throws IOException{
-
-        String value;
-
-        int senderLength = inputStream.read();
-        if(senderLength == -1)
-            throw new IOException("sdgf");
-        byte[] senderBytes = new byte[senderLength];
-        int actuallyRead = inputStream.read(senderBytes);
-        if(actuallyRead != senderLength)
-            throw new IOException("sdfgdfg");
-        return value = new String(senderBytes);
-
-
-    }
-
 
 
     interface ICommand {
@@ -497,13 +523,7 @@ public class Server {
     }
 
 
-    private static void writeInt(OutputStream outputStream, int number) throws IOException {
-        byte[] intBytes = new byte[4];
-        ByteBuffer.wrap(intBytes).putInt(number);
-        outputStream.write(intBytes);
-    }
 
-    interface OnIntegerResult{
-        void onIntegerResult(int result);
-    }
+
+
 }

@@ -145,7 +145,6 @@ public class Booking extends UniqueID implements Serializable {
 
 
 
-
 	public void buyDrink() {
 		costs.add(new Drink());
 	}

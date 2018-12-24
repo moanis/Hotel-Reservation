@@ -19,6 +19,8 @@ public class ClientThread extends Thread {
     private static final int CHECKIN = 111;
     private static final int CHECKOUT = 112;
     private static final int PAYMENT =113;
+    private static final int EXIT = 114;
+    private static final int LOADFILES = 115;
 
     private static final int LOGIN = 105;
     private static final int SIGNUP = 106;
@@ -90,6 +92,12 @@ public class ClientThread extends Thread {
                 case PAYMENT:
                     payTheBill();
                     break;
+                case EXIT:
+                    SaveToFiles();
+                    break;
+                case LOADFILES:
+                    loadFiles();
+                    break;
 
             }
         } catch (IOException e) {
@@ -118,6 +126,9 @@ public class ClientThread extends Thread {
             }
         }
     }
+
+
+
 
     private void hotelList() throws IOException{
         if (isLoggedIN) {
@@ -265,6 +276,22 @@ public class ClientThread extends Thread {
         System.out.println("error handling your payment request");
 
 
+    }
+
+    private void SaveToFiles() throws IOException {
+        BytesStreamsAndFiles.writeArrayListToFile(bookingSystem.getCurrent(), "currentBookings.txt");
+        BytesStreamsAndFiles.writeArrayListToFile(bookingSystem.getGuests(), "guests.txt");
+        BytesStreamsAndFiles.writeArrayListToFile(bookingSystem.getHotels(), "hotels.txt");
+        BytesStreamsAndFiles.writeArrayListToFile(bookingSystem.getHistory(), "historyBookings.txt");
+        outputStream.write(OKAY);
+    }
+
+    private void loadFiles() throws IOException{
+        bookingSystem.setCurrent(BytesStreamsAndFiles.readListFromFile("currentBookings.txt"));
+        bookingSystem.setGuests(BytesStreamsAndFiles.readListFromFile("guests.txt"));
+        bookingSystem.setHistory(BytesStreamsAndFiles.readListFromFile("historyBookings.txt"));
+        bookingSystem.setHotels(BytesStreamsAndFiles.readListFromFile("hotels.txt"));
+        outputStream.write(OKAY);
     }
 
 

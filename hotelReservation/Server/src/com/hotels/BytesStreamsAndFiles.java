@@ -8,25 +8,31 @@ import java.util.ArrayList;
 public class BytesStreamsAndFiles {
 
 
-    public static void writingStringToFiles(String content, String fileName){
+    public static boolean writingStringToFiles(String content, String fileName){
+        boolean success = false;
 
         File file = new File(fileName);
         OutputStream outputStream = null;
         try{
             outputStream = new FileOutputStream(file);
             outputStream.write(content.getBytes());
+            success = true;
         } catch (FileNotFoundException e) {
+
             e.printStackTrace();
         } catch (IOException e) {
+
             e.printStackTrace();
         }finally {
             if(outputStream != null)
                 try {
                     outputStream.close();
                 } catch (IOException e) {
+
                     e.printStackTrace();
                 }
         }
+        return success;
     }
 
     public static void writeArrayListToFile(ArrayList array, String file) {
@@ -40,6 +46,7 @@ public class BytesStreamsAndFiles {
         ObjectOutputStream oos = null;
         try {
             oos = new ObjectOutputStream(fos);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,6 +54,7 @@ public class BytesStreamsAndFiles {
 
 
             oos.writeObject(array);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -100,7 +108,4 @@ public class BytesStreamsAndFiles {
 
 
 
-    private static void log(Object thing){
-        System.out.println(String.valueOf(thing));
-    }
 }

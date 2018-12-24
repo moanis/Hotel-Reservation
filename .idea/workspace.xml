@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68dfefef-a2a3-4f0f-82d8-b535179a3fdc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Hotel-Reservation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Hotel-Reservation.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hotelReservation/Client/src/com/hotels/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotelReservation/Client/src/com/hotels/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hotelReservation/Client/src/com/hotels/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotelReservation/Client/src/com/hotels/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotelReservation/Server/src/com/hotels/Family.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotelReservation/Server/src/com/hotels/Family.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,33 +17,39 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hotelReservation/Client/src/com/hotels/Server.java">
+        <entry file="file://$PROJECT_DIR$/hotelReservation/out/production/Server/com/hotels/Main.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="314" column="15" lean-forward="true" selection-start-line="314" selection-start-column="15" selection-end-line="314" selection-end-column="15" />
+            <state relative-caret-position="703">
+              <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/hotelReservation/Server/src/com/hotels/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-65" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hotelReservation/Client/src/com/hotels/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4332">
-              <caret line="229" selection-start-line="229" selection-end-line="229" />
+            <state relative-caret-position="345">
+              <caret line="135" column="22" selection-start-line="135" selection-start-column="22" selection-end-line="135" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hotelReservation/Server/src/com/hotels/Gym.java">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/hotelReservation/Client/src/com/hotels/Server.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="326">
+              <caret line="314" column="15" selection-start-line="314" selection-start-column="15" selection-end-line="314" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hotelReservation/Server/src/com/hotels/Family.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -52,8 +60,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/hotelReservation/Client/src/com/hotels/Main.java" />
         <option value="$PROJECT_DIR$/hotelReservation/Client/src/com/hotels/Server.java" />
+        <option value="$PROJECT_DIR$/hotelReservation/Client/src/com/hotels/Main.java" />
+        <option value="$PROJECT_DIR$/hotelReservation/Server/src/com/hotels/Family.java" />
       </list>
     </option>
   </component>
@@ -64,6 +73,7 @@
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
+      <flattenPackages ProjectPane="true" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
@@ -82,66 +92,27 @@
             <path>
               <item name="Hotel-Reservation" type="b2602c69:ProjectViewProjectNode" />
               <item name="Hotel-Reservation" type="462c0819:PsiDirectoryNode" />
-              <item name="hotelReservation" type="462c0819:PsiDirectoryNode" />
               <item name="Client" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Hotel-Reservation" type="b2602c69:ProjectViewProjectNode" />
               <item name="Hotel-Reservation" type="462c0819:PsiDirectoryNode" />
-              <item name="hotelReservation" type="462c0819:PsiDirectoryNode" />
-              <item name="Client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Hotel-Reservation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Hotel-Reservation" type="462c0819:PsiDirectoryNode" />
-              <item name="hotelReservation" type="462c0819:PsiDirectoryNode" />
-              <item name="Client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Hotel-Reservation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Hotel-Reservation" type="462c0819:PsiDirectoryNode" />
-              <item name="hotelReservation" type="462c0819:PsiDirectoryNode" />
-              <item name="Client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="hotels" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Hotel-Reservation" type="b2602c69:ProjectViewProjectNode" />
               <item name="Hotel-Reservation" type="462c0819:PsiDirectoryNode" />
-              <item name="hotelReservation" type="462c0819:PsiDirectoryNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Hotel-Reservation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Hotel-Reservation" type="462c0819:PsiDirectoryNode" />
-              <item name="hotelReservation" type="462c0819:PsiDirectoryNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Hotel-Reservation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Hotel-Reservation" type="462c0819:PsiDirectoryNode" />
-              <item name="hotelReservation" type="462c0819:PsiDirectoryNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Hotel-Reservation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Hotel-Reservation" type="462c0819:PsiDirectoryNode" />
-              <item name="hotelReservation" type="462c0819:PsiDirectoryNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="hotels" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Hotel-Reservation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Hotel-Reservation" type="462c0819:PsiDirectoryNode" />
+              <item name="Server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Hotel-Reservation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Hotel-Reservation" type="462c0819:PsiDirectoryNode" />
+              <item name="hotels" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -155,14 +126,15 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545599757489" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545639827429" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="coverage" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RunDashboard">
@@ -187,12 +159,21 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1545599086384</updated>
-      <workItem from="1545599087712" duration="604000" />
+      <workItem from="1545599087712" duration="3445000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="604000" />
+    <option name="totallyTimeSpent" value="3445000" />
+  </component>
+  <component name="TodoView" selected-index="2">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
@@ -219,7 +200,7 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" visible="true" weight="0.32941177" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
       <window_info anchor="right" id="Maven" />
       <window_info anchor="right" id="Palette" />
       <window_info anchor="right" id="Flutter Inspector" />
@@ -237,26 +218,45 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hotelReservation/Client/src/com/hotels/Main.java">
+    <entry file="file://$PROJECT_DIR$/hotelReservation/Server/src/com/hotels/Gym.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotelReservation/Server/src/com/hotels/DateUtils.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotelReservation/Server/src/com/hotels/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4332">
-          <caret line="229" selection-start-line="229" selection-end-line="229" />
+        <state relative-caret-position="49">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hotelReservation/Server/src/com/hotels/Gym.java">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/hotelReservation/out/production/Server/com/hotels/Main.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hotelReservation/Client/src/com/hotels/Server.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
-          <caret line="314" column="15" lean-forward="true" selection-start-line="314" selection-start-column="15" selection-end-line="314" selection-end-column="15" />
+          <caret line="314" column="15" selection-start-line="314" selection-start-column="15" selection-end-line="314" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hotelReservation/Server/src/com/hotels/Main.java">
+    <entry file="file://$PROJECT_DIR$/hotelReservation/Server/src/com/hotels/Family.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-65" />
+        <state relative-caret-position="285">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotelReservation/Client/src/com/hotels/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="135" column="22" selection-start-line="135" selection-start-column="22" selection-end-line="135" selection-end-column="22" />
+        </state>
       </provider>
     </entry>
   </component>
@@ -316,7 +316,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

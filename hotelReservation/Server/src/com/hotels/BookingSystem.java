@@ -313,7 +313,7 @@ public class BookingSystem {
 		boolean paid = booking.payment(money);
 		if (paid) {
 			moveToHistory(booking);
-			return "Thank you for your payment";
+			return "Thank you for your payment. your change is " + (money-booking.totalCost());
 		}
 		if(bookingForVIPGuest(booking)) {
 			System.out.println("Setting VIP!");
@@ -325,6 +325,8 @@ public class BookingSystem {
 			return "You paid " + money
 					+ " but your bill is " + booking.totalCost();
 	}
+
+
 
 // this method counts how many times a guest booked
 	private boolean bookingForVIPGuest(Booking b) {

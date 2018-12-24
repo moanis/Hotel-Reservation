@@ -9,6 +9,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+
         startServerSocket();
     }
 
@@ -47,18 +48,8 @@ public class Main {
         bookingSystem.useGym(b1);
         bookingSystem.checkout(b1, "23/12/2018");
         bookingSystem.payment(b1, 1000);
-////        BytesStreamsAndFiles.writeArrayListToFile(bookingSystem.getCurrent(), "currentBookings.txt");
-////        BytesStreamsAndFiles.writeArrayListToFile(bookingSystem.getGuests(), "guests.txt");
-////        BytesStreamsAndFiles.writeArrayListToFile(bookingSystem.getHotels(), "hotels.txt");
-////        BytesStreamsAndFiles.writeArrayListToFile(bookingSystem.getHistory(), "historyBookings.txt");
-//
-//
-//        bookingSystem.setCurrent(BytesStreamsAndFiles.readListFromFile("currentBookings.txt"));
-//        bookingSystem.setGuests(BytesStreamsAndFiles.readListFromFile("guests.txt"));
-//        bookingSystem.setHistory(BytesStreamsAndFiles.readListFromFile("historyBookings.txt"));
-//        bookingSystem.setHotels(BytesStreamsAndFiles.readListFromFile("hotels.txt"));
-//        System.out.println(bookingSystem.getHotels().toString());
-////        System.out.println(bookingSystem.doesGuestExists("monis"));
+
+
 
         ServerSocket serverSocket = null;
         try{
